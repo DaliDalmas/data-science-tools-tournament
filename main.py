@@ -3,10 +3,19 @@ import random
 import logging
 
 def ingest_and_clean(link):
+    """
+    This function uses the supplied link to get excel document the
+    gets the column of items to be grouped.
+    The function returns a list of items to be grouped.
+    """
     data = pd.read_excel(link)
     return [d[0].upper() for d in data.values]
 
 def create_groups(list_of_items):
+    """
+    This function gets the list of items groups the items
+    and retuns a dictionary of groups
+    """
     Groups = {}
     list_of_items = list_of_items
     items = list_of_items.copy()
@@ -21,6 +30,10 @@ def create_groups(list_of_items):
     return Groups
 
 def make_groups_a_dataframe(groups):
+    """
+    This function take a dictionary of groups and converts it into a dataframe.
+    I returns a pandas dataframe.
+    """
     try:
         return pd.DataFrame(groups)
     except Exception as e:
